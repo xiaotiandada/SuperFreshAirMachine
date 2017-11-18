@@ -1,0 +1,189 @@
+@import "color";
+.font-dpr(@name, @px) {
+    @{name}: @px;
+    [data-dpr="2"]& {
+        @{name}: @px*2;
+    }
+    [data-dpr="3"]& {
+        @{name}: @px*3;
+    }
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+} 
+//移动端定义字体的代码
+body {
+    font-family: Helvetica;
+}
+ *{
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ box-sizing: border-box;
+}
+.addressOrset {
+    .address,
+    .set {
+        i,
+        span {
+            color: @fColor;
+            .font-dpr(font-size, 14px);
+        }
+        i {
+            font-size: 14px;
+        }
+        span {
+            letter-spacing: 1px;
+        }
+        margin-top: .75rem;
+    }
+    .address {
+        margin-left: .6rem;
+    }
+    .set {
+        margin-right: .6rem;
+    }
+}
+
+.main--content__circle {
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: 50%;
+    border: 1px solid @fColor;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    p.main--content__number {
+        strong {
+            letter-spacing: 0;
+            .font-dpr(font-size, 70px);
+        }
+        span {
+            letter-spacing: 0;
+            color: @fColor;
+        }
+    }
+}
+
+p.main--content__title {
+    letter-spacing: 1px;
+    .font-dpr(font-size, 14px);
+}
+
+p {
+    text-align: center;
+    color: @fColor;
+    strong {
+        color: @fColor;
+        font-weight: 500;
+    }
+}
+
+.modeOrheat {
+    .main--content__intelligent-mode,
+    .main--content__heat-mode {
+        i {
+            .font-dpr(font-size, 24px);
+        }
+        span {
+            .font-dpr(font-size, 20px);
+            margin-left: 4px;
+        }
+        i,
+        span {
+            color: #ced8cd;
+        }
+    }
+    .main--content__intelligent-mode {
+        margin-left: .6rem;
+    }
+    .main--content__heat-mode {
+        margin-right: .6rem;
+    }
+}
+
+.detailed--outdoor,
+.detailed--indoor,
+.detailed--before {
+    width: 3.2rem;
+    height: 1.92rem;
+    color: #fffff8;
+    text-align: center;
+    p {
+        letter-spacing: 0;
+        .font-dpr(font-size, 14px);
+        font-weight: 700;
+        display: -webkit-flex;
+        /* Safari */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40%;
+        font-weight: 400;
+    }
+    span {
+        .font-dpr(font-size, 20px);
+        letter-spacing: 1px;
+        display: -webkit-flex;/* Safari */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60%;
+        font-weight: 500;
+        color: @fColor;
+    }
+}
+
+.detailed--outdoor,
+.detailed--before {
+    p {
+        .font-dpr(font-size, 14px);
+    }
+}
+
+.detailed--indoor {
+    border-left: 1px solid @fColor;
+    border-right: 1px solid @fColor;
+    p {
+        sub {
+            .font-dpr(font-size, 10px);
+            vertical-align: sub;
+            display: flex;
+            align-items: center;
+            height: 50%;
+        }
+    }
+}
+
+.fun--mode {
+    .onoff,
+    .mode,
+    .heat,
+    .userdefine {
+        text-align: center;
+    }
+    .onoff--one,
+    .mode--two,
+    .heat--three,
+    .userdefine--four {
+        width: 1.28rem;
+        height: 1.28rem;
+        border-radius: 50%;
+        border: 1px solid #919191;
+        margin-bottom: 0.42rem;
+        i {
+            color: #525252;
+            font-size: 24px;
+            line-height: 1.28rem;
+            font-weight: 500;
+        }
+    }
+    span {
+        color: #5c5c5c;
+        letter-spacing: 0;
+    }
+}

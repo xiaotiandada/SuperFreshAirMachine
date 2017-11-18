@@ -1,64 +1,65 @@
 var gulp = require('gulp');
-var cssnano = require('gulp-cssnano');
+var less = require('gulp-less');
+var path = require('path');
+var cssmin = require('gulp-minify-css');
+// 生成sourcemap文件
+var sourcemaps = require('gulp-sourcemaps');
+// 出现异常并不终止watch事件（gulp-plumber），并提示我们出现了错误（gulp-notify）
+var notify = require('gulp-notify');
+var plumber  = require('gulp-plumber');
+
+var browserSync = require('browser-sync').create();
+
+
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify'); // js压缩
-var imagemin = require('gulp-imagemin'); // image压缩
-var jshint = require('gulp-jshint');  // js代码规范性检查
-var rename = require('gulp-rename');
-var sass = require('gulp-sass');
-var minifycss = require('gulp-minify-css');
-//var browserSync = require('browser-sync');
-//var watch = require('gulp-watch');
+var uglify = require('gulp-uglify');
 
-// sass
-gulp.task('build:sass', function () {
-    gulp.src('./src/sass/*.scss')
-
-
-      .pipe(sass().on('error', sass.logError))
-
-      
-      .pipe(rename({suffix: '.min.sass'}))   
-      .pipe(minifycss())  // 压缩css
-      .pipe(gulp.dest('dist/css'))
-  });
+// gulp.task('testless',function(){
+//     return gulp.src('./less/**/*.less')
+//     .pipe(sourcemaps.init())
+//     .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+//     .pipe(less({
+//         paths : [path.join(__dirname,'less','includes')]
+//     }))
+//     .pipe(cssmin())
+//     .pipe(sourcemaps.write())
+//     .pipe(gulp.dest('./public/css'));
+// });
 
 
-// 3. 定义任务
-// 定义css合并压缩任务
-// gulp.task('build:css', function() {
-//     gulp.src('./dist/css/*.css')
-//         // .pipe(concat('base.min.css'))
-//         .pipe(rename({suffix: '.min'}))   // 压缩代码  *.min.css
-//         .pipe(minifycss())
-//         .pipe(gulp.dest('dist/css/')); // 
-// })
+// gulp.task('testwatch',function(){
+//     gulp.watch('./less/**/*.less',['testless']);
+// });
 
 
+gulp.task('watch',['build-style'],function(gulpCallback){
+    browserSync.init({
+        server: './',
+        open : true
+    },function callback(){
+        gulp.watch('./*.html',browserSync.reload);
+        gulp.watch('./less/**/*.less',['build-style']);
+        gulp.watch('./js/**/*.js',['build-js']);
+        gulpCallback();
+    });
+});
 
-//定义js合并压缩任务
-gulp.task('build:js', function() {
-    gulp.src('src/js/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
+gulp.task('build-style',function(){
+    return gulp.src('./less/**/*.less')
+    .pipe(sourcemaps.init())
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+    .pipe(less({
+        paths : [path.join(__dirname,'less','includes')]
+    }))
+    .pipe(cssmin())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./public/css'))
+    .pipe(browserSync.stream());
+});
 
-        //.pipe(concat('main.min.js'))
-        .pipe(rename({suffix: '.min'}))   //   *.min.js
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/js/'));
-})
-
-//定义图片压缩任务
-gulp.task('build:image', function() {
-    gulp.src('src/imgs/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('dist/imgs'));
-})
-
-gulp.task('build', ['build:sass'/* ,'build:css' */, 'build:js', 'build:image']);
-
-
-   
-gulp.task('watch-sass', function () {
-    gulp.watch(['./src/sass/*.scss','./src/js/*.js'], ['build:sass','build:js']);
-  });
+gulp.task('build-js',function(){
+    return gulp.src('./js/**/*.js')
+    .pipe(concat('main.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/js'));
+});

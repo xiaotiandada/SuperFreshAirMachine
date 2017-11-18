@@ -45,8 +45,8 @@
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" href="./dist/css/base.min.sass.css">
-    <link rel="stylesheet" href="./dist/css/iconfont.css">
+    <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="./public/css/iconfont.css">
 </head>
 <body>
 <div class="container">
@@ -73,12 +73,12 @@
 
             <div class="modeOrheat">
                 <div class="main--content__intelligent-mode le">
-                    <i class="iconfont icon-moshi-weixuanzhong"></i>
-                    <span>智能模式</span>
+                    <i id="iconMoshi" class="iconfont icon-moshi-weixuanzhong"></i>
+                    <span id="moshi">智能模式</span>
                 </div>
                 <div class="main--content__heat-mode ri">
-                    <i class="iconfont icon-rewu"></i>
-                    <span>铺热模式</span>
+                    <i id="iconRewu" class="iconfont icon-rewu"></i>
+                    <span id="Rewu">铺热关闭</span>
                 </div>
             </div>
 
@@ -86,7 +86,7 @@
             <div class="main--detailed">
                 <div class="detailed--outdoor">
                     <p>室外PM2.5</p>
-                    <span>0</span>
+                    <span>16</span>
                 </div>
                 <div class="detailed--indoor">
                     <p>室内CO<sub>2</sub></p>
@@ -103,7 +103,7 @@
         <div class="fun--mode">
             <div class="onoff">
                 <div class="onoff--one">
-                    <i class="iconfont icon-kaiguan"></i>
+                    <i id="FonOff" class="iconfont icon-kaiguan"></i>
                     
                 </div>
                 <span>开关</span>
@@ -111,7 +111,7 @@
 
             <div class="mode">
                 <div class="mode--two">
-                    <i class="iconfont icon-moshi-weixuanzhong"></i>
+                    <i id="FMoshi" class="iconfont icon-moshi-weixuanzhong"></i>
                    
                 </div>
                 <span>模式</span>
@@ -119,14 +119,14 @@
 
             <div class="heat">
                 <div class="heat--three">
-                    <i class="iconfont icon-rewu"></i>
+                    <i id="FRewu" class="iconfont icon-rewu"></i>
                 </div>
                 <span>铺热</span>
             </div>
 
             <div class="userdefine">
                 <div class="userdefine--four">
-                    <i class="iconfont icon-shezhi"></i>
+                    <i id="Fuserdefine" class="iconfont icon-shezhi"></i>
                     
                 </div>
                 <span>自定义</span>
@@ -134,8 +134,7 @@
         </div>
     </div>
 </div>
-
-
+<script src="./public/js/main.js"></script>
 
 
 </body>
