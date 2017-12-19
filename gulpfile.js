@@ -14,22 +14,7 @@ var browserSync = require('browser-sync').create();
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
-// gulp.task('testless',function(){
-//     return gulp.src('./less/**/*.less')
-//     .pipe(sourcemaps.init())
-//     .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-//     .pipe(less({
-//         paths : [path.join(__dirname,'less','includes')]
-//     }))
-//     .pipe(cssmin())
-//     .pipe(sourcemaps.write())
-//     .pipe(gulp.dest('./public/css'));
-// });
-
-
-// gulp.task('testwatch',function(){
-//     gulp.watch('./less/**/*.less',['testless']);
-// });
+var babel = require('gulp-babel');
 
 
 gulp.task('watch',['build-style'],function(gulpCallback){
@@ -60,6 +45,7 @@ gulp.task('build-style',function(){
 gulp.task('build-js',function(){
     return gulp.src('./js/**/*.js')
     .pipe(concat('main.js'))
+    .pipe(babel())
     .pipe(uglify())
     .pipe(gulp.dest('./public/js'));
 });

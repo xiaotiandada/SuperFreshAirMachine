@@ -1,16 +1,16 @@
 $(function () {
-    var index = 1;
-    var view = {
+    let index = 1;
+    let view = {
         showColor: function (location, pigment) {
-            var target = document.getElementById(location);
+            let target = document.getElementById(location);
             target.style.color = pigment;
         },
         showText: function (location, text) {
-            var target = document.getElementById(location);
+            let target = document.getElementById(location);
             target.innerHTML = text;
         }
     };
-    var model = {
+    let model = {
         FonOffBoole: true,
         FMoshiBoole: false,
         FRewuBoole: false,
@@ -44,9 +44,9 @@ $(function () {
             },
         ]
     };
-    var controller = {};
+    let controller = {};
 
-    $("#FonOff").on('click', function () {
+    function onClick (){
         if (model.FonOffBoole) {
             view.showColor("FonOff", "#ee9434");
             view.showColor("FMoshi", "#459234");
@@ -78,21 +78,17 @@ $(function () {
             model.FRewuBoole = false;
             model.FuserdefineBoole = false;
         }
-    })
-
-
-    $("#FMoshi").on('click', function () {
-        if (model.FMoshiBoole && !model.FonOffBoole) {
+    }
+    function msClick(){
+         if (model.FMoshiBoole && !model.FonOffBoole) {
             view.showText("moshi", model.FMoshi[index]);
             index++;
             if (index == model.FMoshiNum) {
                 index = 0;
             }
         }
-
-    })
-
-    $("#FRewu").on('click', function () {
+    }
+    function rClick(){
         if (model.FRewuBoole && !model.FonOffBoole) {
             view.showColor("FRewu", "#c7270d");
 
@@ -111,11 +107,10 @@ $(function () {
             model.FRewuBoole = true;
         }
 
-    })
+    }
 
-
-    $("#Fuserdefine").on('click', function () {
-        if (model.FuserdefineBoole && !model.FonOffBoole) {
+    function uClick(){
+         if (model.FuserdefineBoole && !model.FonOffBoole) {
             view.showColor("Fuserdefine", "#1ceaf7");
             model.FuserdefineBoole = false;
         } else {
@@ -123,5 +118,14 @@ $(function () {
             view.showColor("Fuserdefine", "#525252");
             model.FuserdefineBoole = true;
         }
-    })
+    }
+    
+
+    $("#FonOff").on('click',onClick )
+
+    $("#FMoshi").on('click', msClick)
+
+    $("#FRewu").on('click',rClick)
+
+    $("#Fuserdefine").on('click', uClick)
 })
