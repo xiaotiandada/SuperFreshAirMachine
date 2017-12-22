@@ -7,8 +7,7 @@ body {
 }
 
 .flex-minin{
-  display: -webkit-flex;
-  /* Safari */
+  display: -webkit-flex; /* Safari */
   display: flex;
 }
 .layout-minin{
@@ -50,16 +49,19 @@ body {
     -moz-border-radius: 6px;
     border-radius: 6px;
     overflow: hidden;
+    .flex-minin;
+
     a{
       display: block;
       float: left;
       line-height: 0.88rem;
       text-align: center;
-      width: 33%;
+      //width: 33%;
       letter-spacing: 1px;
       font-size: 12px;
       color: #6e6e6e;
       text-decoration: none;
+      flex-grow: 1;
     }
     .select_line{
       border-left: 1px solid #c9c9c9;
@@ -67,15 +69,19 @@ body {
     }
   }
 }
+
 .time{
   .layout-minin;
   margin: 0.72rem auto 0;
 }
+//shutdown
+
+@sHeight: 0.7466rem;
 .shutdown{
   .layout-minin;
   margin: 0.9066rem auto 0;
   .sd_tool{
-    height: 0.7466rem;
+    height: @sHeight;
     margin-top: 0.533rem;
     .tool_left{
       width: 50%;
@@ -83,18 +89,19 @@ body {
       i{
         display: inline-block;
         font-size: 16px;
-        line-height: 0.7466rem;
+        line-height: @sHeight;
         text-align: center;
         margin: 0;
-        color: #6e6e6e;
+        color: #4e4e4e;
+        font-weight: 600;
       }
       span{
         font-size: 16px;
-        line-height: 0.7466rem;
+        line-height: @sHeight;
         margin: 0;
         margin-left: 0.1rem;
         font-weight: 600;
-        color: #6e6e6e;
+        color: #4e4e4e;
       }
     }
     .tool_right{
@@ -112,9 +119,9 @@ body {
         float: left;
         width: 20%;
         text-align: center;
-        line-height: 0.7466rem;
+        line-height: @sHeight;
         color: #6e6e6e;
-        font-size: 16px;
+        font-size: 20px;
         text-decoration: none;
       }
       .tool_time{
@@ -125,10 +132,14 @@ body {
         border-left: 1px solid #c9c9c9;
         border-right: 1px solid #c9c9c9;
         text-align: center;
-        line-height: 0.7466rem;
+        line-height: @sHeight;
         background: #e7e7e7;
         color: #6e6e6e;
         letter-spacing: 1px;
+        span{
+          color: #6e6e6e;
+          font-size: 12px;
+        }
       }
     }
 

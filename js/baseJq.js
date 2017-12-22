@@ -9,7 +9,7 @@ $(function () {
             let target = document.getElementById(location);
             target.innerHTML = text;
         }
-    };
+    }
     let model = {
         FonOffBoole: true,
         FMoshiBoole: false,
@@ -27,9 +27,9 @@ $(function () {
             "铺热开启"
         ],
         FMRU: [{
-                location: "FonOff",
-                pigment: "#ee9434 "
-            },
+            location: "FonOff",
+            pigment: "#ee9434 "
+        },
             {
                 location: "FMoshi",
                 pigment: "#459234"
@@ -43,8 +43,12 @@ $(function () {
                 pigment: "#1ceaf7"
             },
         ]
-    };
-    let controller = {};
+    }
+    let controller = {}
+
+    // shutdowwn
+    let timtNum = 0
+    let tTimeNs = $('#tTimeN')
 
     function onClick (){
         if (model.FonOffBoole) {
@@ -80,7 +84,7 @@ $(function () {
         }
     }
     function msClick(){
-         if (model.FMoshiBoole && !model.FonOffBoole) {
+        if (model.FMoshiBoole && !model.FonOffBoole) {
             view.showText("moshi", model.FMoshi[index]);
             index++;
             if (index == model.FMoshiNum) {
@@ -108,9 +112,8 @@ $(function () {
         }
 
     }
-
     function uClick(){
-         if (model.FuserdefineBoole && !model.FonOffBoole) {
+        if (model.FuserdefineBoole && !model.FonOffBoole) {
             view.showColor("Fuserdefine", "#1ceaf7");
             model.FuserdefineBoole = false;
         } else {
@@ -119,13 +122,38 @@ $(function () {
             model.FuserdefineBoole = true;
         }
     }
-    
+
+
+    function sumTime () {
+        let isTimeOff = $(this).text()
+
+        if(isTimeOff == "+"){
+            timtNum++
+        }
+        if(isTimeOff == "-"){
+            if(timtNum == 0) return
+            timtNum--
+        }
+        tTimeNs.text(timtNum)
+    }
+    function toggleClickClass() {
+        $(this).siblings().removeClass('btn')
+        $(this).addClass('btn')
+    }
 
     $("#FonOff").on('click',onClick )
-
     $("#FMoshi").on('click', msClick)
-
     $("#FRewu").on('click',rClick)
-
     $("#Fuserdefine").on('click', uClick)
+
+    $('#speeds a,#times a').each(function () {
+        $(this).on('click',toggleClickClass)
+    })
+
+
+    $('#tTimeM').on('click',sumTime)
+    $('#tTimeP').on('click',sumTime)
+
+
+
 })

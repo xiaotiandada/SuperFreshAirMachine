@@ -21,7 +21,7 @@
 <div class="container">
     <div class="speed">
         <h2>风速选择</h2>
-        <div class="speed_select">
+        <div class="speed_select" id="speeds">
             <a href="javascript:;" class="btn">低速</a>
             <a href="javascript:;" class="select_line">中速</a>
             <a href="javascript:;">高速</a>
@@ -29,7 +29,7 @@
     </div>
     <div class="time">
         <h2>运行时长</h2>
-        <div class="time_select">
+        <div class="time_select" id="times">
             <a href="javascript:;" class="btn">常开</a>
             <a href="javascript:;" class="select_line">节能</a>
             <a href="javascript:;">假日</a>
@@ -43,9 +43,9 @@
                 <span>关机时间</span>
             </div>
             <div class="tool_right">
-                <a href="javascript:;">-</a>
-                <div class="tool_time">0小时</div>
-                <a href="javascript:;">+</a>
+                <a href="javascript:;" id="tTimeM">-</a>
+                <div class="tool_time"><span id="tTimeN">0</span>小时</div>
+                <a href="javascript:;" id="tTimeP">+</a>
             </div>
         </div>
     </div>
